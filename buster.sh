@@ -89,7 +89,7 @@ echo "Portainer Installed"
 ########################################################################################
 # Display SERVER IP
 echo "" >> /etc/issue
-echo "eth0: \4{eth0}" >> /etc/issue
+echo "eth0: \4{enp0s3}" >> /etc/issue
 echo "IP Displayed"
 ########################################################################################
 
