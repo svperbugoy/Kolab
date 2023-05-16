@@ -86,17 +86,18 @@ docker run -d -p 8000:8000 -p 9443:9443 -p 9000:9000 --name portainer --restart=
 echo "Portainer Installed"
 ########################################################################################
 
+
 ########################################################################################
 # Display SERVER IP
-echo "" >> /etc/issue
-echo "eth0: \4{enp0s3}" >> /etc/issue
-echo "IP=$(/sbin/ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}')" >> /etc/rc.local
-echo ""eth0 IP: $IP" > /etc/issue" >> /etc/rc.local
+##
+##
+FILE="/etc/issue"
+ip=$(ip addr | grep inet.*brd | sed 's/^.*inet //;s/ brd.*$//;s/^//;2,$ d')
+echo "$(lsb_release -d | cut -d":" -f2 | sed 's/^\s//') \n \l" > $FILE
+echo "IP: $ip" >> $FILE
+echo "" >> $FILE
 echo "IP Displayed"
 ########################################################################################
-
-
-
 
 sudo reboot
 
