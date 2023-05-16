@@ -5,8 +5,7 @@
 ##
 `apt-get install curl`
 ##
-`curl -sSL https://raw.githubusercontent.com/svperbugoy/Buster/main/buster.sh | sh`
-
+`curl -sSL https://raw.githubusercontent.com/svperbugoy/Kolab/main/buster.sh | sh`
 ## Contribution note
 git add <file>
   ##
