@@ -86,6 +86,28 @@ docker run -d -p 8000:8000 -p 9443:9443 -p 9000:9000 --name portainer --restart=
 echo "Portainer Installed"
 ########################################################################################
 
+########################################################################################
+# Install COCKPIT (9090)
+apt-get update && apt-get upgrade
+apt-get install cockpit -y
+echo "Cockpit Installed"
+########################################################################################
+
+########################################################################################
+# Install Filebrowser (9080)
+docker volume create filebrowser
+docker run -d -p 9080:80 --name filebrowser --restart=unless-stopped -v ~/:/srv -v ~/filebrowser/filebrowser.db:/database/filebrowser.db -v ~/filebrowser/settings.json:/config/settings.json -e TZ=Asia/Dubai -e PUID=1000 -e PGID=1000 filebrowser/filebrowser:latest
+
+echo "Filebrowser Installed"
+########################################################################################
+
+########################################################################################
+# Install Nginx Proxy (40081)
+docker volume create nginx-proxy
+docker run -d -p 40080:80 -p 40443:443 -p 40081:81 --name nginx-proxy --restart=unless-stopped -v ./data:/data -v ./letsencrypt:/etc/letsencrypt jc21/nginx-proxy-manager:latest
+echo "Nginx Proxy Installed"
+########################################################################################
+
 
 ########################################################################################
 # Display SERVER IP
@@ -100,5 +122,3 @@ echo "IP Displayed"
 ########################################################################################
 
 sudo reboot
-
-
